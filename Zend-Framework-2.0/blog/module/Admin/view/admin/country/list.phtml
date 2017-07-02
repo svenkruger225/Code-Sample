@@ -1,0 +1,68 @@
+<!-- END OVERVIEW STATISTIC BLOCKS-->
+<div class="clearfix">
+</div>
+<div class="row ">
+
+    <div class="col-md-12 col-sm-12">
+
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="caption">
+                    <i class="fa fa-edit"></i>Country List
+            </div>
+            <div class="actions">
+                <a href="<?php echo $this->url('route-name', array('controller' => 'country', 'action' => 'create'));?>" class="btn btn-info">
+                    Add Country <i class="fa fa-plus"></i>
+                </a>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-cogs"></i> Tools <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                                <a id="edit" href="javascript:void(0)" data-action_link="<?php echo $this->url('route-name', array('controller' => 'country', 'action' => 'edit'));?>"><i class="fa fa-pencil"></i> Edit</a>
+                        </li>
+                        <li>
+                                <a id="delete" href="javascript:void(0)" data-action_link="<?php echo $this->url('route-name', array('controller' => 'country', 'action' => 'delete'));?>"><i class="fa fa-trash-o"></i> Delete</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="portlet-body">
+            <?php if(isset($countries)): ?>			
+            <table class="table table-striped table-bordered table-hover" id="sample_2">
+                <thead>
+                    <tr>
+                        <th style="width1:8px;">
+                            <input type="checkbox" class="group-checkable" data-set="#sample_2 .checkboxes"/>
+                        </th>
+                        <th>Country Name</th>
+                        <th>Country Code</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach($countries as $country): ?>
+                    <tr>
+                        <td>
+                                <input type="checkbox" class="checkboxes" value="<?php echo($country->getId()); ?>"/>
+                        </td>
+                        <td>
+                            <?php echo($country->getName()); ?>
+                        </td>
+                        <td>
+                            <?php echo($country->getCode()); ?>
+                        </td>
+                        <td>
+                            <?php echo($country->getStatus()); ?>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php endif; ?>
+        </div>
+    </div>
+</div><!-- end page content -->

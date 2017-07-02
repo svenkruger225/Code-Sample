@@ -1,0 +1,77 @@
+<!-- END OVERVIEW STATISTIC BLOCKS-->
+<div class="clearfix">
+</div>
+<div class="row ">
+
+    <div class="col-md-12 col-sm-12">
+
+
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="caption">
+                    <i class="fa fa-edit"></i>User List
+            </div>
+            <div class="actions">
+
+            </div>
+        </div>
+        <div class="portlet-body">
+
+       <?php if(isset($users)): ?>			
+            <table class="table table-striped table-hover table-bordered" id="sample_2">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>User Group</th>
+                        <th>Email Id</th>
+                        <th>Status</th>
+                        <th>Address</th>
+                        <th>Phone No</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($users as $user):
+                        $id=$user->getUserId();
+                        $status=$user->getState();
+                    ?>
+                    <tr>
+                        <td>
+                            <?php echo($user->getDisplayName()); ?>
+                        </td>
+                        <td>
+                            <?php if(!null==($user->getUserDetail())){echo($user->getUserDetail()->getGroup()->getName());} ?>
+                        </td>
+                        <td>
+                            <?php echo($user->getEmail()); ?>
+                        </td>
+                        <td>
+                            <?php  
+                                if($status==1){
+                                    echo 'Active';
+                                }else{
+                                    echo 'Inactive';
+                                }
+                            ?>
+                        </td>
+                        <td>
+                            <?php if(!null==($user->getUserDetail())){ echo($user->getUserDetail()->getAddress());} ?>
+                        </td>
+                        <td class="center">
+                            <?php if(!null==($user->getUserDetail())){ echo($user->getUserDetail()->getPhoneNo()); } ?>
+                        </td>
+                        <td>
+                            <?php if ($status==1){?>
+                            <a class="edit" href="<?php echo $this->url('route-name', array('controller' => 'user', 'action' => 'blockUser','id'=>$id));?>">Block</a>
+                            <?php }else{ ?>
+                            <a class="edit" href="<?php echo $this->url('route-name', array('controller' => 'user', 'action' => 'unblockUser','id'=>$id));?>">Unblock</a>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>

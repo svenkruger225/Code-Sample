@@ -1,0 +1,112 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <meta content="" name="description"/>
+        <meta content="" name="author"/>
+        <meta name="MobileOptimized" content="320">
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <?php echo $this->headTitle('login '. $this->translate('Admin Login'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                        ->prependStylesheet($this->basePath() . '/admin/assets/plugins/font-awesome/css/font-awesome.min.css')
+                        ->prependStylesheet($this->basePath() . '/admin/assets/plugins/bootstrap/css/bootstrap.min.css')
+                        ->prependStylesheet($this->basePath() . '/admin/assets/plugins/uniform/css/uniform.default.css')
+            /* END GLOBAL MANDATORY STYLES */
+            /* BEGIN PAGE LEVEL STYLES */
+                        ->prependStylesheet($this->basePath() . '/admin/assets/plugins/select2/select2_conquer.css')
+            /* END PAGE LEVEL SCRIPTS */
+            /* BEGIN THEME STYLES */ 
+                        ->prependStylesheet($this->basePath() . '/admin/assets/css/style-conquer.css')
+                        ->prependStylesheet($this->basePath() . '/admin/assets/css/style.css')
+                        ->prependStylesheet($this->basePath() . '/admin/assets/css/style-responsive.css')
+                        ->prependStylesheet($this->basePath() . '/admin/assets/css/plugins.css')
+                        ->prependStylesheet($this->basePath() . '/admin/assets/css/themes/default.css')
+                        ->prependStylesheet($this->basePath() . '/admin/assets/css/pages/login.css')
+                        ->prependStylesheet($this->basePath() . '/admin/assets/css/custom.css')
+            /* END THEME STYLES */
+                ; ?>
+
+        <!-- Scripts -->
+        <?php echo $this->headScript()
+            ->prependFile($this->basePath() . '/admin/assets/plugins/jquery-1.10.2.min.js')
+            ->prependFile($this->basePath() . '/admin/assets/plugins/bootstrap/js/bootstrap.min.js'); 
+        ?>
+        <link rel="shortcut icon" href="favicon.ico"/>
+    </head>
+<!-- BEGIN BODY -->
+<body class="login">
+<!-- BEGIN LOGO -->
+<div class="logo">
+</div>
+<!-- END LOGO -->
+<!-- BEGIN LOGIN -->
+<div class="content">
+    <div class="row">
+        <div class="col-md-12 text-left">
+            <?php
+                $this->flashMessenger()->setMessageOpenFormat('<div%s><a href="#" class="close" data-dismiss="alert"><i class="icon-remove"></i></a>')
+                    ->setMessageCloseString('</div>');
+                echo $this->flashMessenger()->render('success', array('alert', 'alert-success'));
+                echo $this->flashMessenger()->render('error',   array('alert', 'alert-danger'));
+            ?>
+        </div>
+    </div>
+    <?php 
+    $form = $this->loginForm;
+    $form->prepare();
+    echo $this->form()->openTag($form);
+    ?>
+
+	<!-- BEGIN LOGIN FORM -->
+		<h3 class="form-title">Login to your account</h3>
+		<div class="alert alert-error display-hide">
+			<button class="close" data-close="alert"></button>
+			<span>
+				 Enter any username and password.
+			</span>
+		</div>
+		<div class="form-group">
+			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+			<label class="control-label visible-ie8 visible-ie9"><?php echo $this->formlabel($form->get('email'));?></label>
+			<div class="input-icon">
+				<i class="fa fa-user"></i>
+                                <?php echo $this->formElement($form->get('email')); ?>
+    				<!--<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>-->
+			</div>
+                        <span class="alert-danger"><?php echo $this->formElementErrors($form->get('email'));?></span>
+
+		</div>
+		<div class="form-group">
+			<label class="control-label visible-ie8 visible-ie9"><?php echo $this->formlabel($form->get('password'));?></label>
+			<div class="input-icon">
+				<i class="fa fa-lock"></i>
+                                <?php echo $this->formElement($form->get('password')); ?>
+    
+				<!--<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password"/>-->
+			</div>
+                        <span class="alert-danger"><?php echo $this->formElementErrors($form->get('password'));?></span>
+		</div>
+		<div class="form-actions">
+			<?php
+        echo $this->formRow($form->get('loginCsrf'));
+        echo $this->formElement($form->get('submit'));
+    ?>
+		</div>
+		
+	<?php
+echo $this->form()->closeTag($form);
+?>
+	
+</div>
+<!-- END LOGIN -->
+<!-- BEGIN COPYRIGHT -->
+<div class="copyright">
+	 <?php echo date('Y');?> &copy; blog. Admin Dashboard Template.
+</div>
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

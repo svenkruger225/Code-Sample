@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:6
+-keep class com.ionicframework.eliteapp432874.CordovaApp { <init>(...); }
+

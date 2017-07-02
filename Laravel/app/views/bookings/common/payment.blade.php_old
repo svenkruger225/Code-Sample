@@ -1,0 +1,53 @@
+                <div class="well">
+					<div class="row"><div class="offset2 span2"><input type="checkbox" name="SendSMS" value="1"  data-bind="checked: booking().SendSMS"/></div><div class="span8">Send student SMS</div></div>
+					<div class="row"><div class="offset2 span2"><input type="checkbox" name="SendEmail" value="1"  data-bind="checked: booking().SendEmail"/></div><div class="span8">Send student Email</div></div>
+				</div>
+                <h4>Select your Payment Type</h4>
+                <div id="cbPaymentType" class="well" >                      
+                    <label>
+                        <input type="radio" name="PaymentMethod" value="CC" data-bind="checked: booking().PaymentMethod, click: displayPayPalForm" class="cbPaymentCredit" /> 
+                        Credit Card [PayPal] = <span id="online_total" data-bind="html: booking().OnLineTotal.Price"></span>
+                    </label>
+                    <!--
+					<label>
+                        <input type="radio" name="PaymentMethod" value="CC" data-bind="checked: booking().PaymentMethod, click: displayCreditCardForm" class="cbPaymentCredit" /> 
+                        Credit Card = <span id="online_total" data-bind="html: booking().OnLineTotal.Price"></span>
+                    </label>
+					-->
+                    <label>
+                        <input type="radio" name="PaymentMethod" value="LATER" data-bind="checked: booking().PaymentMethod, click: displayOtherPayment" class="cbPaymentOther1" /> 
+                        Cash on Day = <span id="offline_total" data-bind="html: booking().OffLineTotal.Price"></span>
+                    </label> 
+                    <label>
+                        <input type="radio" name="PaymentMethod" value="AGENT" data-bind="checked: booking().PaymentMethod, click: displayOtherPayment" class="cbPaymentAdmin8" /> 
+                        Pay Later - Agent To Pay = <span id="Span4" data-bind="html: booking().OnLineTotal.Price"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="PaymentMethod" value="EFTPOS" data-bind="checked: booking().PaymentMethod, click: displayOtherPayment" class="cbPaymentAdmin5" /> 
+                        Paid - EFTPOS (Manual) = <span id="Span4" data-bind="html: booking().OnLineTotal.Price"></span>
+                    </label>
+                    <!--
+                    <label>
+                        <input type="radio" name="PaymentMethod" value="PAYPALTERM" data-bind="checked: booking().PaymentMethod, click: displayOtherPayment" class="cbPaymentAdmin3" /> 
+                        Paid - PayPal (Terminal) = <span id="Span4" data-bind="html: booking().OnLineTotal.Price"></span>
+                    </label>
+ 					-->
+                    <label>
+                        <input type="radio" name="PaymentMethod" value="DEPOSIT" data-bind="checked: booking().PaymentMethod, click: displayOtherPayment" class="cbPaymentAdmin6" /> 
+                        Paid - Direct Deposit = <span id="Span4" data-bind="html: booking().OnLineTotal.Price"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="PaymentMethod" value="CHEQUE" data-bind="checked: booking().PaymentMethod, click: displayOtherPayment" class="cbPaymentAdmin4" /> 
+                        Paid - Cheque deposit = <span id="Span4" data-bind="html: booking().OnLineTotal.Price"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="PaymentMethod" value="CASH" data-bind="checked: booking().PaymentMethod, click: displayOtherPayment" class="cbPaymentAdmin7" /> 
+                        Paid - Cash On Day = <span id="Span4" data-bind="html: booking().OffLineTotal.Price"></span>
+                    </label>
+                    <!--
+                    <label>
+                        <input type="radio" name="PaymentMethod" value="CASH2" data-bind="checked: booking().PaymentMethod, click: displayOtherPayment" class="cbPaymentAdmin8" /> 
+                        Paid - Cash = <span id="Span4" data-bind="html: booking().OffLineTotal.Price"></span>
+                    </label>
+					-->
+                </div>

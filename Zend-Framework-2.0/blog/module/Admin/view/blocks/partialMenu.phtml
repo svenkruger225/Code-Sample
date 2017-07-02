@@ -1,0 +1,89 @@
+<?php
+if(!function_exists ('isActiveParent'))
+{
+    function isActiveParent($page, $isActiveParent)
+    {
+        foreach ($page->getPages() as $childPage) {
+            if ($childPage->isActive()) {
+                return true;
+            }
+            if ($childPage->hasPages()) {
+                $isActiveParent = isActiveParent($childPage, $isActiveParent);
+            }
+        }
+        return $isActiveParent;
+    }
+}
+?>
+<div class="page-sidebar-wrapper">
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            <ul class="page-sidebar-menu">
+                <li class="sidebar-toggler-wrapper">
+                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                    <div class="sidebar-toggler">
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                </li>
+                <li>
+                    <form class="search-form" role="form" action="index.html" method="get">
+                        <div class="input-icon right">
+                            <i class="fa fa-search"></i>
+                            <input type="text" class="form-control input-medium input-sm" name="query" placeholder="Search...">
+                        </div>
+                    </form>
+                </li>
+<?php foreach ($this->container as $page): ?>
+    <?php if(!$page->hasPages()):?>
+    
+    <li <?php echo $page->isActive() ? 'class="active"': '';?> >
+        <a href="<?php echo $page->getHref();?>">
+            <?php if ($page->icon): ?>
+                <i class="<?php echo $page->icon; ?>"></i>
+            <?php endif; ?>
+                    <span class="title">
+                        <?php echo $this->translate($page->getLabel());?>
+                    </span>
+            <?php echo $page->isActive() ? '<span class="selected"></span>': '';?>
+        </a>
+    </li>
+    <?php else:?>
+        <?php  if($page->isVisible()):?>
+        <?php
+        $isActiveParent = false;
+        $isActiveParent = isActiveParent($page, $isActiveParent);
+        ?>
+        <li <?php echo $isActiveParent ? 'class="active "': '';?> >
+            <a href="javascript:;">
+                <?php if ($page->icon): ?>
+                    <i class="<?php echo $page->icon; ?>"></i>
+                <?php endif; ?>
+                <span class="title">
+                    <?php echo $page->getLabel();?>
+                </span>
+                <span class="arrow <?php echo $isActiveParent ? 'open': '';?>"></span>
+                <?php echo $page->isActive() ? '<span class="selected"></span>': '';?>
+            </a>
+            <ul class="sub-menu" <?php echo $isActiveParent ? 'style="display: block"': '';?>>
+                <?php foreach ($page->getPages() as $childPage):?>
+                <?php  if($childPage->isVisible()):?>
+                <li <?php echo $childPage->isActive() ? 'class="active"': '';?>>
+                    <a href="<?php echo $childPage->getHref();?>">
+                        <?php echo $childPage->getLabel();?>
+                    </a>
+                </li>
+                <?php endif;?>
+                <?php endforeach;$isActiveParent = false;?>
+            </ul>
+        </li>
+    <?php endif;?>
+    <?php endif;?>
+<?php endforeach;?>
+            </ul>
+<!-- END SIDEBAR MENU -->
+        </div>
+    </div>
+</div>
+<!-- END SIDEBAR -->

@@ -1,0 +1,207 @@
+<?php echo $this->doctype(); ?>
+<html lang="en" class="no-js">
+<!-- BEGIN HEAD -->
+<head>
+<meta charset="utf-8"/>
+<?php echo $this->headTitle('Blog Management '.$this->translate('Admin Panel'))->setSeparator('-')->setAutoEscape(false); ?>
+<?php echo $this->headMeta()
+        ->appendName('viewport','width=device-width, initial-scale=1.0')
+        ->appendName('description','')
+        ->appendName('author','')
+        ->appendName('MobileOptimized','320')
+        ->appendHttpEquiv('X-UA-Compatible','IE=edge');
+?>        
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/admin/assets/img/favicon.ico'))
+                ->appendStylesheet($this->basePath() . '/admin/assets/plugins/font-awesome/css/font-awesome.min.css')
+                ->appendStylesheet($this->basePath() . '/admin/assets/plugins/bootstrap/css/bootstrap.min.css')
+                ->appendStylesheet($this->basePath() . '/admin/assets/plugins/uniform/css/uniform.default.css')
+                ->appendStylesheet($this->basePath() . '/admin/assets/plugins/bootstrap-datepicker/css/datepicker.min.css')
+?>
+<?php echo $this->headLink()
+               ->appendStylesheet($this->basePath() . '/admin/assets/plugins/select2/select2_conquer.css')
+                ->appendStylesheet($this->basePath() . '/admin/assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css')
+?>
+<!-- END PAGE LEVEL PLUGIN STYLES -->
+<!-- BEGIN THEME STYLES -->
+<?php echo $this->headLink()
+                ->appendStylesheet($this->basePath() . '/admin/assets/css/style-conquer.css')
+                ->appendStylesheet($this->basePath() . '/admin/assets/css/style.css')
+                ->appendStylesheet($this->basePath() . '/admin/assets/css/style-responsive.css') 
+                ->appendStylesheet($this->basePath() . '/admin/assets/css/plugins.css') 
+                ->appendStylesheet($this->basePath() . '/admin/assets/css/pages/tasks.css') 
+                ->appendStylesheet($this->basePath() . '/admin/assets/css/themes/default.css') 
+                ->appendStylesheet($this->basePath() . '/admin/assets/css/custom.css');
+        
+?>
+<?php echo $this->headLink()
+               ->appendStylesheet($this->basePath() . '/admin/assets/plugins/select2/select2_conquer.css')
+               ->appendStylesheet($this->basePath() . '/admin/assets/plugins/bootstrap-wysihtml5/editor.css')
+                ->appendStylesheet($this->basePath() . '/admin/assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css')
+               ->appendStylesheet($this->basePath() . '/admin/assets/plugins/data-tables/DT_bootstrap.css'); 
+?>
+
+ <?php $this->headScript()
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jquery-migrate-1.2.1.min.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/bootstrap/js/bootstrap.min.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jquery.blockui.min.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jquery.cokie.min.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/uniform/jquery.uniform.min.js')
+         
+    ->appendFile($this->basePath() . '/admin/assets/plugins/select2/select2.min.js') 
+?> 
+<script type="text/javascript" src="<?php echo $this->basePath(); ?>/admin/assets/plugins/jquery-1.10.2.min.js"></script>
+
+</head>
+<!-- END HEAD Tag -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed">
+<!-- BEGIN HEADER -->
+<div class="header navbar navbar-inverse navbar-fixed-top">
+	<!-- BEGIN TOP NAVIGATION BAR -->
+	<div class="header-inner">
+		<!-- BEGIN LOGO -->
+		<a class="navbar-brand" href="index.html">
+		<img src="<?php echo  $this->basePath() ?>/frontend/images/logo.png" alt="logo" class="img-responsive" width="60" height="60"/>
+		</a>
+		<!-- END LOGO -->
+		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+		<a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<img src="<?php echo  $this->basePath() ?>/admin/assets/img/menu-toggler.png" alt=""/>
+		</a>
+		<!-- END RESPONSIVE MENU TOGGLER -->
+		<!-- BEGIN TOP NAVIGATION MENU -->
+		<ul class="nav navbar-nav pull-right">
+			<li class="devider">
+				 &nbsp;
+			</li>
+			<!-- BEGIN USER LOGIN DROPDOWN -->
+			<li class="dropdown user">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+				<span class="username"><?php echo $this->userName; ?></span>
+				<i class="fa fa-angle-down"></i>
+				</a>
+				<ul class="dropdown-menu">
+					<!--<li>
+						<a href="<?php echo $this->url('admin-profile');?>"><i class="fa fa-user"></i>My Profile</a>
+					</li>
+					
+					<li class="divider">
+					</li>-->
+                                    <li>
+					<a href="<?php echo $this->url('admin-logout', array('action' => 'logout'));?>"><i class="fa fa-key"></i> Log Out</a>
+                                    </li>
+                                </ul>
+                        </li>
+		<!-- END USER LOGIN DROPDOWN -->
+                </ul>
+	<!-- END TOP NAVIGATION MENU -->
+        </div>
+<!-- END TOP NAVIGATION BAR -->
+</div>
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+    <?php $this->navigation($this->navigation)->menu()->setPartial('partialMenu');
+        echo $this->navigation($this->navigation)->menu()->render()
+    ?>
+<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+	<div class="page-content-wrapper">
+            <!-- Flash message Show -->
+            <div class="row flas-msg" id="flash-msg">
+                <div class="col-md-12">
+                    <?php
+                        $this->flashMessenger()->setMessageOpenFormat('<div%s><a href="#" class="close" data-dismiss="alert"><i class="icon-remove"></i></a>')
+                            ->setMessageCloseString('</div>');
+                        echo $this->flashMessenger()->render('success', array('alert', 'alert-success'));
+                        echo $this->flashMessenger()->render('error',   array('alert', 'alert-danger'));
+                    ?>
+                </div>
+            </div>
+            <div class="page-content">
+                <!-- BEGIN PAGE HEADER-->
+                <div class="row">
+                    <div class="col-md-12">
+     
+                <?php $this->navigation($this->navigation)->breadcrumbs()->setMinDepth(0)->setPartial('partialBreadcrumbs');
+                            echo $this->navigation($this->navigation)->breadcrumbs()->setRenderInvisible(true)->render();?>
+                <?php echo $this->content ?>
+                    </div>
+                </div>
+            </div>
+	</div>
+</div>
+<!-- END CONTENT -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="footer">
+<div class="footer-inner">
+	 <?php echo date('Y');?> Developed By Shayansolutions.
+</div>
+<div class="footer-tools">
+	<span class="go-top">
+		<i class="fa fa-angle-up"></i>
+	</span>
+</div>
+</div>
+<!-- END FOOTER -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<?php 
+
+$this->headScript()
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jqvmap/jqvmap/jquery.vmap.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jquery.peity.min.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jquery.pulsate.min.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jquery-knob/js/jquery.knob.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/flot/jquery.flot.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/flot/jquery.flot.resize.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/bootstrap-daterangepicker/moment.min.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/bootstrap-daterangepicker/daterangepicker.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/gritter/js/jquery.gritter.js')
+    /* IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support */    
+    ->appendFile($this->basePath() . '/admin/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/jquery.sparkline.min.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/data-tables/jquery.dataTables.js') 
+    ->appendFile($this->basePath() . '/admin/assets/plugins/bootstrap-wysihtml5/editor.js') 
+    ->appendFile($this->basePath() . '/admin/assets/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js') 
+    ->appendFile($this->basePath() . '/admin/assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js')
+    ->appendFile($this->basePath() . '/admin/assets/plugins/data-tables/DT_bootstrap.js'); ?>
+
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<?php
+    echo $this->headScript()
+        ->appendFile($this->basePath() . '/admin/assets/scripts/app.js')
+        ->appendFile($this->basePath() . '/admin/assets/scripts/index.js')
+        ->appendFile($this->basePath() . '/admin/assets/scripts/tasks.js')
+            ->appendFile($this->basePath() . '/admin/assets/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js') 
+            ->appendFile($this->basePath() . '/admin/assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js')
+        ->appendFile($this->basePath() . '/admin/assets/scripts/table-managed.js')
+?>
+<!-- END PAGE LEVEL SCRIPTS -->
+<script>
+jQuery(document).ready(function() {    
+   App.init(); // initlayout and core plugins
+   TableManaged.init();
+   Index.init();
+   setTimeout(function(){ $('#flash-msg').fadeOut() }, 3000);
+});
+</script>
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

@@ -1,0 +1,77 @@
+#main { width:980px; margin:0 auto; text-align:left;}
+
+#header {height:418px; background:url(images/header-bg.jpg) top left no-repeat #fff;}
+
+#content {padding:0 0 39px 58px; background:#fff;}
+
+#footer { height:48px; background:#1d1d1d url(images/footer-tail.gif) top repeat-x; padding:36px 0 0 64px;}
+
+.col-1, .col-2, .col-3 {float:left;}
+.container {width:100%; overflow:hidden;}
+
+/* ============================= page1 ===========================*/
+
+#page1 .col-1 {width:218px;}
+#page1 .col-2 {width:218px;}
+#page1 .col-3 {width:372px;}
+
+#page1 .col-3 .col-1 {width:197px;}
+#page1 .col-3 .col-2 {width:160px;}
+
+/* ============================= page2 ===========================*/
+
+#page2 .col-1 {width:218px;}
+#page2 .col-2 {width:350px;}
+#page2 .col-3 {width:218px;}
+
+#page2 .col-2 .col-1 {width:197px;}
+#page2 .col-2 .col-2 {width:145px;}
+
+/* ============================= page3 ===========================*/
+
+#page3 .col-1 {width:377px;}
+#page3 .col-2 {width:218px;}
+#page3 .col-3 {width:218px;}
+
+#page3 .col-1 .col-1 {width:197px;}
+#page3 .col-1 .col-2 {width:161px;}
+
+/* ============================= page4 ===========================*/
+
+#page4 .col-1 {width:218px;}
+#page4 .col-2 {width:218px;}
+#page4 .col-3 {width:372px;}
+
+#page4 .col-3 .col-1 {width:197px;}
+#page4 .col-3 .col-2 {width:160px;}
+
+/* ============================= page5 ===========================*/
+
+#page5 .col-1 {width:218px;}
+#page5 .col-2 {width:350px;}
+#page5 .col-3 {width:218px;}
+
+#page5 .col-2 .col-1 {width:196px;}
+#page5 .col-2 .col-2 {width:151px;}
+
+/* ============================= page6 ===========================*/
+
+#page6 .col-1 {
+	width:600px;
+}
+#page6 .col-2 {width:218px;}
+#page6 .col-3 {width:218px;}
+
+#page6 .col-1 .col-1 {
+	width:400px;
+}
+#page6 .col-1 .col-2 {width:161px;}
+
+/* ============================= page7 ===========================*/
+
+#page7 .col-1 {width:218px;}
+#page7 .col-2 {width:218px;}
+#page7 .col-3 {width:379px;}
+
+#page7 .col-3 .col-1 {width:208px;}
+#page7 .col-3 .col-2 {width:169px;}

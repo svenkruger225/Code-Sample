@@ -1,0 +1,39 @@
+ <?php if (!empty($this->pages)):?>
+<h3 class="page-title">
+    <?php
+        $pageArray = $this->pages;
+        $lastPage = array_pop($pageArray);
+        echo $lastPage->getLabel();
+    ?>
+</h3>
+<ul class="page-breadcrumb breadcrumb">
+    <?php
+    $pagesCount = count($this->pages);
+    $counter = 1;
+    ?>
+    <li>
+        <i class="fa fa-home"></i>
+        <a href="/"><?php echo $this->translate('Home');?></a>
+        <?php echo $counter < $pagesCount ? '<i class="fa fa-angle-right"></i>' : '';?>
+    </li>
+
+    <?php foreach ($this->pages as $key => $page):?>
+        <?php if ($counter < $pagesCount):?>
+        <li>
+            <a href="<?php echo $page->getHref(); ?>"><?php echo $page->getLabel(); ?></a>
+            <?php echo ($counter + 1) < $pagesCount ? '<i class="fa fa-angle-right"></i>' : '';?>
+        </li>
+        <?php endif;?>
+    <?php $counter++;?>
+
+    <?php endforeach;?>
+    <li class="pull-right">
+        <div id="dashboard-report-range" class="dashboard-date-range tooltips" data-placement="top" data-original-title="Change dashboard date range">
+            <i class="fa fa-calendar"></i>
+            <span>
+            </span>
+            <i class="fa fa-angle-down"></i>
+        </div>
+    </li>
+</ul>
+<?php endif;?>

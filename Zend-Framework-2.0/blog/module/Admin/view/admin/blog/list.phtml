@@ -1,0 +1,67 @@
+<!-- END OVERVIEW STATISTIC BLOCKS-->
+<div class="clearfix">
+</div>
+<div class="row ">
+
+    <div class="col-md-12 col-sm-12">
+
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="caption">
+                    <i class="fa fa-edit"></i>Blog List
+            </div>
+            <div class="actions">
+                <a href="<?php echo $this->url('route-name', array('controller' => 'blog', 'action' => 'create'));?>" class="btn btn-info">
+                    Add Blog <i class="fa fa-plus"></i>
+                </a>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-cogs"></i> Tools <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <a id="edit" href="javascript:void(0)" data-action_link="<?php echo $this->url('route-name', array('controller' => 'blog', 'action' => 'edit'));?>"><i class="fa fa-pencil"></i> Edit</a>
+                        </li>
+                        <li>
+                                <a id="delete" href="javascript:void(0)" data-action_link="<?php echo $this->url('route-name', array('controller' => 'blog', 'action' => 'delete'));?>"><i class="fa fa-trash-o"></i> Delete</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <?php if(isset($list)): ?>			
+            <table class="table table-striped table-bordered table-hover" id="sample_2">
+                <thead>
+                    <tr>
+                        <th style="width1:8px;">
+                            <input type="checkbox" class="group-checkable" data-set="#sample_2 .checkboxes"/>
+                        </th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>sef</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach($list as $blog): ?>
+                    <tr>
+                        <td>
+                                <input type="checkbox" class="checkboxes" value="<?php echo($blog->getId()); ?>"/>
+                        </td>
+                        <td>
+                           <?php echo($blog->getTitle());  ?>
+                        </td>
+                        <td>
+                            <?php echo($blog->getContent());  ?>
+                        </td>
+                        <td>
+                            <?php echo($blog->getSef());  ?>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php endif; ?>
+        </div>
+    </div>
+</div><!-- end page content -->

@@ -1,0 +1,44 @@
+<!-- END OVERVIEW STATISTIC BLOCKS-->
+<div class="clearfix">
+</div>
+<div class="row ">
+   <div class="tab-pane">
+        <div class="portlet">
+            <div class="portlet-title">
+                    <div class="caption">
+                            <i class="fa fa-reorder"></i>Update Group
+                    </div>
+                    <div class="tools">
+                            <a href="javascript:;" class="collapse"></a>
+                            <a href="#portlet-config" data-toggle="modal" class="config"></a>
+                            <a href="javascript:;" class="reload"></a>
+                            <a href="javascript:;" class="remove"></a>
+                    </div>
+            </div>
+            <div class="portlet-body form">
+                <?php
+                    $form = $this->groupForm;
+                    $form->setAttribute('action', $this->url('route-name', array('controller' => 'group', 'action' => 'save')));
+                    $form->prepare();
+                ?>
+                <?php echo $this->form()->openTag($form) ?>
+                <div class="form-body">
+                        <?php foreach ($form as $element): ?>
+                        <div class="form-group">
+                                <label class="control-label col-md-4"><?php echo $element->getLabel();?></label>
+                                <div class="col-md-6">
+                                        <?php echo $this->formElement($element) . $this->formElementErrors($element,array('class' => 'error_messages')) ?>
+                                </div>
+                        </div>
+                         <?php endforeach ?>
+                        <div class="form-group">
+                            <div class="col-md-offset-4 col-md-6">
+                                <input name="submit" type="submit" class="btn btn-info" value="Submit">
+                            </div>
+                        </div>
+                   </div>
+               <?php echo $this->form()->closeTag(); ?>
+            </div>
+        </div>
+    </div>
+</div><!-- end page content -->
